@@ -52,7 +52,7 @@
 <DATA>["]			{BEGIN(STRING);}
 <DATA>[a-z]+		{return 33;}
 <DATA>"="			{return 34;}
-<DATA>[0-9]+		{return 35;}
+<DATA>[+-]?[0-9]+	{return 35;}
 <DATA>".code"		{BEGIN(INITIAL);}
 <DATA>.				{return 404;}
 <STRING>["]				{BEGIN(DATA);}
