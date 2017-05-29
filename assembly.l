@@ -16,9 +16,9 @@
 %x STRING
 %%
 
-"//"			{}
+"//".*			{}
 "LD"			{return 13;}
-"JZ"			{return 14; }
+"STO"			{return 26;}
 \n 				{return -1;}			//acho interressante fazer isso para colocar no bison
 "DEC"			{return 16;}
 "INC"			{return 17;}
@@ -42,8 +42,12 @@
 "]"				{return 10;}
 "CALL"			{return 11;}
 "RET"			{return 12;}
-"PRINT"			{return 2;}
+"PRINT"			{return 200;}
 ".data"			{BEGIN(DATA);}
+[A-Z][a-z]*		{return  14;}
+[0x][0-64]
+":"				{return 15;}
+
 <DATA>				//aqui é onde vai ter as declaracoes de variaveis que eu to 'xaxando'
 <DATA>["]			{BEGIN(STRING);}
 <DATA>[a-z]+		{return 33;}
